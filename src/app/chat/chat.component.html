@@ -1,12 +1,29 @@
 <div class="container">
-  <form action="">
-    <input type="text"
-          placeholder="Enter Message..."
-          [(ngModel)]="message"
-          name="message"
-          (keyup.enter)="sendMessage()">
+
+  <form >
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="text"
+            [(ngModel)]="username"
+            name="username"
+            class="form-control">
+      <button (click)="setUsername()">Submit</button>
+    </div>
+    <div class="form-group" *ngIf="username">
+      <label for="message">Message</label>
+      <input type="text"
+            placeholder="Enter Message..."
+            [(ngModel)]="message"
+            name="message"
+            (keyup.enter)="sendMessage()"
+            class="form-control">
+    </div>
   </form>
-  <div *ngFor="let message of messages">
-    {{ message.text }}
+  <div *ngIf="!username" >
+    <p>Please Log in to Chat</p>
   </div>
+  <div *ngFor="let message of messages">
+    <strong>{{ message.username }}: </strong> {{ message.text }}
+  </div>
+
 </div>

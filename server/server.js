@@ -9,10 +9,11 @@ io.on('connection', (socket) => {
     console.log('User Disconnected...')
   });
 
-  socket.on('add-message', (message) => {
+  socket.on('add-message', (message, username) => {
     io.emit('message', {
       type: 'new-message',
-      text: message
+      text: message,
+      username: username
     });
   });
 });
